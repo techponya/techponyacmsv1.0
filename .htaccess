@@ -1,0 +1,22 @@
+Options +FollowSymLinks
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^localhost/techponya/
+RewriteRule (.*) http://localhost/techponya/$1 [R=301,L]
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
+RewriteRule ^index\.php$ http://localhost/techponya/ [R=301,L]
+RewriteRule ^user/ - [L]
+RewriteRule ^([^/.]+)$ /$1.php [L]
+RewriteRule ^artikel/([^/\.]+)/?$ artikel.php?id=$1 [L]
+RewriteRule ^kategori/([^/\.]+)/?$ kategori.php?id=$1 [L]
+RewriteRule ^penulis/([^/\.]+)/?$ penulis.php?id=$1 [L]
+RewriteRule ^page/([^/.]+)/?$ /page.php?page=$1 [L]
+RewriteRule ^([^/.]+)/?$ /$1.php [L]
+Options -indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-l
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>
